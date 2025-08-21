@@ -1,7 +1,7 @@
 // List all tags
 import "./TagList.css"
 import { useEffect, useState } from "react"
-import { getTags } from "../../services/TagManager"
+import { getTags } from "../../managers/TagManager"
 
 export const TagList = () => {
     const [tags, setTags] = useState([])
