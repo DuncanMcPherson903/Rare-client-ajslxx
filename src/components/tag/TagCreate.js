@@ -10,6 +10,10 @@ export const TagCreate = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        if (!tag.trim()) {
+            return;
+        }
 
         createTag({ label: tag }).then(() => {
             navigate("/tags");
