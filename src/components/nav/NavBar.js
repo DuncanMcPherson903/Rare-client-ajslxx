@@ -31,7 +31,7 @@ export const NavBar = ({ token, setToken }) => {
       <div className="navbar-menu" ref={navbar}>
         <div className="navbar-start">
           {/* Always show these links for testing */}
-          <Link to="/" className="navbar-item">Posts</Link>
+          <Link to="/posts" className="navbar-item">Posts</Link>
           <Link to="/tags" className="navbar-item">Tags</Link>
           <Link to="/tags/create" className="navbar-item">Create Tag</Link>
           <Link to="/categories" className="navbar-item">Category Management</Link>
