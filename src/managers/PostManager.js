@@ -21,7 +21,7 @@ export const createPost = (postData) => {
 export const editPost = (postId) => {
   const newLabel = prompt("Enter new post label:");
   if (newLabel) {
-    return fetch(`${API_URL}/tags/${postId}`, {
+    return fetch(`${API_URL}/posts/${postId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"

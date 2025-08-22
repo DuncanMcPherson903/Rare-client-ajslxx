@@ -10,6 +10,7 @@ import { CategoryList } from "../components/category/CategoryList"
 import { CategoryCreate } from "../components/category/CategoryCreate"
 import { PostList } from "../components/post/post"
 
+import { PostCreate } from "../components/post/PostCreate"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return <>
@@ -25,6 +26,9 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/categories" element={<CategoryList />} />
       <Route path="/categories/create" element={<CategoryCreate />} />
       <Route path="/posts" element={<PostList />} />
+
+      <Route path="/posts/create" element={<PostCreate />} />
+
 
 
       <Route element={<Authorized token={token} />}>
