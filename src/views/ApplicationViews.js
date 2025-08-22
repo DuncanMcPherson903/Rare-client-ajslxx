@@ -4,6 +4,8 @@ import { Register } from "../components/auth/Register"
 import { Authorized } from "./Authorized"
 import { TagList } from "../components/tag/TagList"
 import { TagCreate } from "../components/tag/TagCreate"
+import { CategoryList } from "../components/category/CategoryList"
+import { CategoryCreate } from "../components/category/CategoryCreate"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return <>
@@ -15,6 +17,8 @@ export const ApplicationViews = ({ token, setToken }) => {
       {/* Temporarily moved outside Authorized for testing without auth */}
       <Route path="/tags" element={<TagList />} />
       <Route path="/tags/create" element={<TagCreate />} />
+      <Route path="/categories" element={<CategoryList />} />
+      <Route path="/categories/create" element={<CategoryCreate />} />
       
       <Route element={<Authorized token={token} />}>
         {/* Add Routes here */}

@@ -2,7 +2,7 @@
 import { createTag } from "../../managers/TagManager";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./TagCreate.css";
+// import "./TagCreate.css";
 
 export const TagCreate = () => {
     const navigate = useNavigate();
