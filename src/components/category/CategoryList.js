@@ -2,6 +2,7 @@ import "./CategoryList.css";
 import { useEffect, useState } from "react";
 import { getCategories, deleteCategory, editCategory } from "../../managers/CategoryManager";
 import { Link } from "react-router-dom"
+import { getPosts } from "../../managers/PostManager";
 
 export const CategoryList = () => {
   const [categories, setCategories] = useState([]);
@@ -10,6 +11,26 @@ export const CategoryList = () => {
   const loadCategories = () => {
     getCategories().then(setCategories);
   };
+
+  const checkBeforeDelete = (categoryId) => {
+    let doNotDelete = false;
+    getPosts().then((posts) => {
+      for (let post in posts) {
+        if (posts[post]['categoryId'] === categoryId) {
+          window.alert('This category is currently in use')
+          doNotDelete = true;
+        }
+      }
+      return doNotDelete
+    }).then((response) => {
+      if (response === false) {
+        console.log("Hit delete");
+        deleteCategory(categoryId)
+      }
+    })
+    loadCategories()
+    // console.log(doNotDelete)
+  }
 
   useEffect(() => {
     loadCategories();
@@ -24,7 +45,7 @@ export const CategoryList = () => {
   return (
     <div className="category-list-container">
       <div className="category-header">
-        <Link to="/categories/create" class="button is-primary is-medium">Create Category</Link>
+        <Link to="/categories/create" className="button is-primary is-medium">Create Category</Link>
       </div>
 
       <div className="category-list-simple">
@@ -41,9 +62,7 @@ export const CategoryList = () => {
             <button
               className="delete-button"
               onClick={() =>
-                deleteCategory(category.id).then(() => {
-                  loadCategories();
-                })
+                checkBeforeDelete(category.id)
               }
             >
               Delete
