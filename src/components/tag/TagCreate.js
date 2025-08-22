@@ -1,8 +1,8 @@
 /* Tag Create Form */
 import { createTag } from "../../managers/TagManager";
-import { useState, useEffect } from "react";
+import { useState,} from "react";
 import { useNavigate } from "react-router-dom";
-import "./TagCreate.css";
+
 
 export const TagCreate = () => {
     const navigate = useNavigate();

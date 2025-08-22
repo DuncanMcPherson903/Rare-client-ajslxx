@@ -101,7 +101,7 @@ export const Register = ({setToken}) => {
             <button className="button is-link" type="submit">Submit</button>
           </div>
           <div className="control">
-            <Link to="/login" className="button is-link is-light">Cancel</Link>
+            <Link to="/home" className="button is-link is-light">Cancel</Link>
           </div>
         </div>
 
