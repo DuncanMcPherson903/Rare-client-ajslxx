@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createPost } from "../../managers/PostManager";
-import "./post.css";
+import "./postCreate.css";
 
 export const PostCreate = ({ onPostCreated }) => {
     const [formData, setFormData] = useState({
