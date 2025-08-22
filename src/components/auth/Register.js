@@ -19,25 +19,28 @@ export const Register = ({setToken}) => {
     
     if (password.current.value === verifyPassword.current.value) {
       const newUser = {
-        username: username.current.value,
-        first_name: firstName.current.value,
-        last_name: lastName.current.value,
-        email: email.current.value,
-        password: password.current.value,
-        bio: bio.current.value
+  Username: username.current.value,
+  FirstName: firstName.current.value,
+  LastName: lastName.current.value,
+  Email: email.current.value,
+  Password: password.current.value,
+  Bio: bio.current.value,
+  ProfileImageUrl: "", // can be empty, backend inserts empty string now
+  
+
       }
 
       registerUser(newUser)
-        .then(res => {
-          if ("valid" in res && res.valid) {
-            setToken(res.token)
-            navigate("/")
-          }
-        })
-    } else {
-      passwordDialog.current.showModal()
-    }
+      .then(res => {
+        if ("valid" in res && res.valid) {
+          setToken(res.token)
+          navigate("/")
+        }
+    })
+  } else {
+    passwordDialog.current.showModal()
   }
+}
 
   return (
     <section className="columns is-centered">
