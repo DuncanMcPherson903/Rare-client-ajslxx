@@ -1,0 +1,20 @@
+.post-form-container {
+    border: 115px solid #ff3131;
+    background-color: #05b669f1;
+}
+h2 {
+    color: #4931ff;
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    animation: head1 8s;
+}
+.post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f6b605;
+}
