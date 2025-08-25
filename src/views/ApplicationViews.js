@@ -9,7 +9,7 @@ import { CommentCreate } from "../components/comments/CommentCreate"
 import { CategoryList } from "../components/category/CategoryList"
 import { CategoryCreate } from "../components/category/CategoryCreate"
 import { PostList } from "../components/post/post"
-
+import { PostDetail } from "../components/post/PostDetail"
 import { PostCreate } from "../components/post/PostCreate"
 
 export const ApplicationViews = ({ token, setToken }) => {
@@ -23,10 +23,11 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/tags/create" element={<TagCreate />} />
       <Route path="/comments" element={<CommentList />} />
       <Route path="/comments/create" element={<CommentCreate />} />
+      <Route path="/posts/:postId/comments" element={<CommentList showDetails={true} />} />
       <Route path="/categories" element={<CategoryList />} />
       <Route path="/categories/create" element={<CategoryCreate />} />
       <Route path="/posts" element={<PostList />} />
-
+      <Route path="/posts/:postId" element={<PostDetail />} />
       <Route path="/posts/create" element={<PostCreate />} />
 
 

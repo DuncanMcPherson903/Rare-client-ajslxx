@@ -1,41 +1,72 @@
 import "./CommentList.css";
-import { useEffect, useState } from "react";
-import { getComments, deleteComment, updateComment, getPostCommentsWithDetails } from "../../managers/CommentManager";
+import { useEffect, useState, useCallback } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getComments, deleteComment, updateComment, getPostCommentsWithDetails, getPostById } from "../../managers/CommentManager";
 import { CommentEdit } from "./CommentEdit";
 
 export const CommentList = ({ postId = null, showDetails = false }) => {
   const [comments, setComments] = useState([]);
+  const [post, setPost] = useState(null);
   const [editingComment, setEditingComment] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const params = useParams();
+  
+  // Use postId from props or URL params
+  const currentPostId = postId || params.postId;
+
+  // Load post details if we have a postId
+  const loadPost = async (id) => {
+    try {
+      const postData = await getPostById(id);
+      setPost(postData);
+    } catch (err) {
+      console.error("Error loading post:", err);
+    }
+  };
 
   // Load comments - either all comments or comments for a specific post with details
-  const loadComments = async () => {
+  const loadComments = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
       let commentsData;
       
-      if (postId && showDetails) {
+      if (currentPostId && showDetails) {
         // Fetch comments with author details for a specific post
-        commentsData = await getPostCommentsWithDetails(postId);
+        commentsData = await getPostCommentsWithDetails(currentPostId);
+      } else if (currentPostId) {
+        // Fetch comments for a specific post without details
+        commentsData = await getPostCommentsWithDetails(currentPostId);
       } else {
         // Fetch all comments
         commentsData = await getComments();
       }
       
-      setComments(commentsData);
+      // Sort comments by creation date, most recent first
+      if (commentsData && Array.isArray(commentsData)) {
+        commentsData.sort((a, b) => new Date(b.createdAt || b.created_at || b.dateCreated) - new Date(a.createdAt || a.created_at || a.dateCreated));
+      }
+      
+      setComments(commentsData || []);
     } catch (err) {
       setError("Failed to load comments");
       console.error("Error loading comments:", err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPostId, showDetails]);
 
   useEffect(() => {
-    loadComments();
-  }, [postId, showDetails]);
+    const loadData = async () => {
+      if (currentPostId) {
+        await loadPost(currentPostId);
+      }
+      await loadComments();
+    };
+    loadData();
+  }, [currentPostId, showDetails, loadComments]);
 
   const handleEdit = (comment) => {
     setEditingComment(comment);
@@ -68,30 +99,69 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
     }
   };
 
+  const formatDate = (dateString) => {
+    if (!dateString) return "Date not available";
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      month: "2-digit",
+      day: "2-digit", 
+      year: "numeric"
+    });
+  };
+
   const renderCommentDetails = (comment) => {
-    if (showDetails && comment.authorFirstName) {
+    if (currentPostId && (comment.authorFirstName || comment.authorDisplayName)) {
+      // Post-specific view with author details
       return (
-        <>
-          <p><strong>Content:</strong> {comment.content}</p>
-          <p><strong>Author:</strong> {comment.authorFirstName} {comment.authorLastName} (@{comment.authorUsername})</p>
-          <p><strong>Post ID:</strong> {comment.postId}</p>
-        </>
+        <div className="comment-details">
+          {comment.subject && (
+            <h4 className="comment-subject">{comment.subject}</h4>
+          )}
+          <div className="comment-content-text">{comment.content}</div>
+          <div className="comment-meta">
+            <span className="comment-author">
+              By: {comment.authorDisplayName || `${comment.authorFirstName} ${comment.authorLastName}`}
+            </span>
+            <span className="comment-date">
+              {formatDate(comment.createdAt || comment.created_at || comment.dateCreated)}
+            </span>
+          </div>
+        </div>
       );
     } else {
+      // General admin view
       return (
-        <>
-          <p><strong>Content:</strong> {comment.content}</p>
-          <p><strong>Post ID:</strong> {comment.postId}</p>
-          <p><strong>Author ID:</strong> {comment.authorId}</p>
-        </>
+        <div className="comment-details">
+          <div className="comment-content-text">{comment.content}</div>
+          <div className="comment-meta">
+            <span>Post ID: {comment.postId}</span>
+            <span>Author ID: {comment.authorId}</span>
+          </div>
+        </div>
       );
     }
   };
 
   return (
     <div className="comment-list-container">
-      <div className="comment-header">
-        <h2>{postId ? `Comments for Post ${postId}` : 'All Comments'}</h2>
+      {/* Post Header with title and back link */}
+      {currentPostId && post ? (
+        <div className="post-header">
+          <button 
+            className="back-to-post-btn"
+            onClick={() => navigate(`/posts/${currentPostId}`)}
+          >
+            ← Back to Post
+          </button>
+          <h2>Comments on: {post.title}</h2>
+        </div>
+      ) : (
+        <div className="comment-header">
+          <h2>All Comments</h2>
+        </div>
+      )}
+
+      <div className="comments-count">
         <p>Total: {comments.length} comments</p>
       </div>
 
@@ -118,7 +188,7 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
       <div className="comment-list-simple">
         {comments.length === 0 && !loading ? (
           <div className="no-comments">
-            No comments found.
+            {currentPostId ? "No comments on this post yet." : "No comments found."}
           </div>
         ) : (
           comments.map((comment, index) => (
@@ -126,22 +196,25 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
               <div className="comment-content">
                 {renderCommentDetails(comment)}
               </div>
-              <div className="comment-actions">
-                <button
-                  className="edit-button"
-                  onClick={() => handleEdit(comment)}
-                  disabled={editingComment !== null}
-                >
-                  Edit
-                </button>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDelete(comment.id)}
-                  disabled={editingComment !== null}
-                >
-                  Delete
-                </button>
-              </div>
+              {/* Only show edit/delete for admin view */}
+              {!currentPostId && (
+                <div className="comment-actions">
+                  <button
+                    className="edit-button"
+                    onClick={() => handleEdit(comment)}
+                    disabled={editingComment !== null}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDelete(comment.id)}
+                    disabled={editingComment !== null}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
             </div>
           ))
         )}
@@ -149,5 +222,3 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
     </div>
   );
 };
-
-<CommentList postId={123} showDetails={true} />

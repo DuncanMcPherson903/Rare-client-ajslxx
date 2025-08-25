@@ -43,3 +43,8 @@ export const getPostCommentsWithDetails = (postId) => {
   return fetch(`${API_URL}/posts/${postId}/comments-with-details`)
     .then(res => res.json());
 };
+
+export const getPostById = (postId) => {
+  return fetch(`${API_URL}/posts/${postId}`)
+    .then(res => res.json());
+};
