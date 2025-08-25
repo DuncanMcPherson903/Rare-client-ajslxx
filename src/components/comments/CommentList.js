@@ -1,20 +1,29 @@
 import "./CommentList.css";
 import { useEffect, useState } from "react";
-import { getComments, deleteComment, updateComment } from "../../managers/CommentManager";
+import { getComments, deleteComment, updateComment, getPostCommentsWithDetails } from "../../managers/CommentManager";
 import { CommentEdit } from "./CommentEdit";
 
-export const CommentList = () => {
+export const CommentList = ({ postId = null, showDetails = false }) => {
   const [comments, setComments] = useState([]);
   const [editingComment, setEditingComment] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Load all comments
+  // Load comments - either all comments or comments for a specific post with details
   const loadComments = async () => {
     try {
       setLoading(true);
       setError(null);
-      const commentsData = await getComments();
+      let commentsData;
+      
+      if (postId && showDetails) {
+        // Fetch comments with author details for a specific post
+        commentsData = await getPostCommentsWithDetails(postId);
+      } else {
+        // Fetch all comments
+        commentsData = await getComments();
+      }
+      
       setComments(commentsData);
     } catch (err) {
       setError("Failed to load comments");
@@ -26,7 +35,7 @@ export const CommentList = () => {
 
   useEffect(() => {
     loadComments();
-  }, []);
+  }, [postId, showDetails]);
 
   const handleEdit = (comment) => {
     setEditingComment(comment);
@@ -59,21 +68,41 @@ export const CommentList = () => {
     }
   };
 
+  const renderCommentDetails = (comment) => {
+    if (showDetails && comment.authorFirstName) {
+      return (
+        <>
+          <p><strong>Content:</strong> {comment.content}</p>
+          <p><strong>Author:</strong> {comment.authorFirstName} {comment.authorLastName} (@{comment.authorUsername})</p>
+          <p><strong>Post ID:</strong> {comment.postId}</p>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <p><strong>Content:</strong> {comment.content}</p>
+          <p><strong>Post ID:</strong> {comment.postId}</p>
+          <p><strong>Author ID:</strong> {comment.authorId}</p>
+        </>
+      );
+    }
+  };
+
   return (
     <div className="comment-list-container">
       <div className="comment-header">
-        <h2>All Comments</h2>
+        <h2>{postId ? `Comments for Post ${postId}` : 'All Comments'}</h2>
         <p>Total: {comments.length} comments</p>
       </div>
 
       {error && (
-        <div className="error-message" style={{ color: 'red', padding: '10px', marginBottom: '10px' }}>
+        <div className="error-message">
           {error}
         </div>
       )}
 
       {loading && (
-        <div className="loading-message" style={{ padding: '10px', marginBottom: '10px' }}>
+        <div className="loading-message">
           Loading comments...
         </div>
       )}
@@ -88,16 +117,14 @@ export const CommentList = () => {
 
       <div className="comment-list-simple">
         {comments.length === 0 && !loading ? (
-          <div className="no-comments" style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
+          <div className="no-comments">
             No comments found.
           </div>
         ) : (
           comments.map((comment, index) => (
             <div key={comment.id || index} className="comment-item-simple">
               <div className="comment-content">
-                <p><strong>Content:</strong> {comment.content}</p>
-                <p><strong>Post ID:</strong> {comment.postId}</p>
-                <p><strong>Author ID:</strong> {comment.authorId}</p>
+                {renderCommentDetails(comment)}
               </div>
               <div className="comment-actions">
                 <button
@@ -122,3 +149,5 @@ export const CommentList = () => {
     </div>
   );
 };
+
+<CommentList postId={123} showDetails={true} />
