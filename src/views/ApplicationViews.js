@@ -15,6 +15,10 @@ import { PostDetail } from "../components/post/PostDetail"
 import { PostCreate } from "../components/post/PostCreate"
 import { ReactionList } from "../components/reaction/ReactionList"
 import { ReactionCreate } from "../components/reaction/ReactionCreate"
+import { UserList } from "../components/user/UserList"
+import { UserView } from "../components/user/UserView"
+import { UserProfile } from "../components/user/UserProfile"
+
 
 export const ApplicationViews = ({ token, setToken }) => {
   return <>
@@ -37,9 +41,10 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/posts/create" element={<PostCreate />} />
       <Route path="/reactions" element={<ReactionList />} />
       <Route path="/reactions/create" element={<ReactionCreate />} />
-
-
-
+      <Route path="/posts/create" element={<PostCreate />} />
+      <Route path="/users" element={<UserList />} />
+      <Route path="/users/:id" element={<UserView />} />
+      <Route path="/users/profile" element={<UserProfile />} />
       <Route element={<Authorized token={token} />}>
         {/* Add Routes here */}
         {/* Tag routes moved above for now */}
