@@ -2,6 +2,7 @@ import "./post.css" ;
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getPosts } from "../../managers/PostManager";
+import { PostReactions } from "./PostReactions";
 
 export const PostList = () => {
     const [posts, setPosts] = useState([]);
@@ -40,6 +41,10 @@ return (
                         <div><strong>Date Created:</strong> {post.publication_date}</div>
                        </div> 
                     </div>
+                    
+                    {/* Post Reactions Section */}
+                    <PostReactions postId={post.id} />
+                    
                     <div className="post-actions">
                         <button
                             className="edit-button"
