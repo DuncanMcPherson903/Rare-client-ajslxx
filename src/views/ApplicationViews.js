@@ -9,8 +9,8 @@ import { CommentCreate } from "../components/comments/CommentCreate"
 import { CategoryList } from "../components/category/CategoryList"
 import { CategoryCreate } from "../components/category/CategoryCreate"
 import { PostList } from "../components/post/post"
-
 import { PostCreate } from "../components/post/PostCreate"
+import { PostsDetails } from "../components/post/PostsDetails"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return <>
@@ -28,6 +28,7 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/posts" element={<PostList />} />
 
       <Route path="/posts/create" element={<PostCreate />} />
+      <Route path="/posts/details" element={<PostsDetails />} />
 
 
 
