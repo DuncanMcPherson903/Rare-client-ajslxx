@@ -1,0 +1,232 @@
+/* PostReactions.css */
+.reactions-container {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.reactions-title {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.reactions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.reaction-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
+    position: relative;
+}
+
+.reaction-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+    border-color: #007bff;
+}
+
+.reaction-item.user-reacted {
+    background: #e3f2fd;
+    border-color: #007bff;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.reaction-image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reaction-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.reaction-emoji {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    border-radius: 50%;
+    background: rgba(0, 123, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.reaction-item:hover .reaction-emoji {
+    background: rgba(0, 123, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.reaction-item.user-reacted .reaction-emoji {
+    background: rgba(0, 123, 255, 0.3);
+}
+
+.reaction-item:hover .reaction-image {
+    border-color: #007bff;
+}
+
+.reaction-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #007bff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.reaction-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.reaction-label {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    text-align: center;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.reaction-item.user-reacted .reaction-label {
+    color: #007bff;
+    font-weight: 600;
+}
+
+.reactions-loading,
+.reactions-error {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+}
+
+.reactions-error {
+    color: #dc3545;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .reactions-container {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .reactions-list {
+        gap: 10px;
+    }
+    
+    .reaction-item {
+        min-width: 70px;
+        padding: 10px;
+    }
+    
+    .reaction-image,
+    .reaction-placeholder {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .reaction-count {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+    
+    .reaction-label {
+        font-size: 0.8rem;
+        max-width: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .reactions-list {
+        justify-content: center;
+    }
+    
+    .reaction-item {
+        min-width: 60px;
+        padding: 8px;
+    }
+    
+    .reaction-image,
+    .reaction-placeholder {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .reaction-placeholder {
+        font-size: 1rem;
+    }
+    
+    .reaction-count {
+        width: 18px;
+        height: 18px;
+        font-size: 0.6rem;
+        top: -6px;
+        right: -6px;
+    }
+}
+
+/* Animation for reaction feedback */
+@keyframes reactionPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.reaction-item.user-reacted .reaction-image-container {
+    animation: reactionPulse 0.3s ease-out;
+}
