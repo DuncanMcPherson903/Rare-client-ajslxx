@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { getReactions } from "../../managers/ReactionManager";
 import "./ReactionList.css";
 
@@ -6,24 +7,25 @@ export const ReactionList = () => {
     const [reactions, setReactions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const loadReactions = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                const reactionsData = await getReactions();
-                setReactions(reactionsData || []);
-            } catch (err) {
-                setError("Failed to load reactions");
-                console.error("Error loading reactions:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
         loadReactions();
     }, []);
+
+    const loadReactions = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            const reactionsData = await getReactions();
+            setReactions(reactionsData || []);
+        } catch (err) {
+            setError("Failed to load reactions");
+            console.error("Error loading reactions:", err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     if (loading) {
         return (
@@ -46,6 +48,12 @@ export const ReactionList = () => {
             <div className="reaction-admin-header">
                 <h2>Reaction Management</h2>
                 <p>Manage available reactions for posts</p>
+                <button 
+                    className="btn-create-reaction"
+                    onClick={() => navigate('/reactions/create')}
+                >
+                    + Create New Reaction
+                </button>
             </div>
 
             <div className="reaction-admin-list">

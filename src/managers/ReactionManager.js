@@ -36,3 +36,15 @@ export const removeReaction = (postId, reactionId, userId) => {
 export const getUserPostReactions = (postId, userId) => {
   return fetch(`${API_URL}/posts/${postId}/reactions/user/${userId}`).then(res => res.json());
 };
+
+// Create a new reaction
+export const createReaction = (label, imageUrl) => {
+  return fetch(`${API_URL}/reactions`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 
+      label: label,
+      imageUrl: imageUrl
+    }),
+  }).then(res => res.json());
+};

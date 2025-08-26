@@ -20,9 +20,28 @@
 }
 
 .reaction-admin-header p {
-    margin: 0;
+    margin: 0 0 15px 0;
     color: #666;
     font-size: 1.1rem;
+}
+
+.btn-create-reaction {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-create-reaction:hover {
+    background: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .reaction-admin-list {

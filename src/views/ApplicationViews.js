@@ -14,6 +14,7 @@ import { PostList } from "../components/post/post"
 import { PostDetail } from "../components/post/PostDetail"
 import { PostCreate } from "../components/post/PostCreate"
 import { ReactionList } from "../components/reaction/ReactionList"
+import { ReactionCreate } from "../components/reaction/ReactionCreate"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return <>
@@ -35,6 +36,7 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/posts/:postId" element={<PostDetail />} />
       <Route path="/posts/create" element={<PostCreate />} />
       <Route path="/reactions" element={<ReactionList />} />
+      <Route path="/reactions/create" element={<ReactionCreate />} />
 
 
 
