@@ -11,6 +11,9 @@ import { CategoryCreate } from "../components/category/CategoryCreate"
 import { PostList } from "../components/post/post"
 
 import { PostCreate } from "../components/post/PostCreate"
+import { UserList } from "../components/user/UserList"
+import { UserView } from "../components/user/UserView"
+import { UserProfile } from "../components/user/UserProfile"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return <>
@@ -26,11 +29,10 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/categories" element={<CategoryList />} />
       <Route path="/categories/create" element={<CategoryCreate />} />
       <Route path="/posts" element={<PostList />} />
-
       <Route path="/posts/create" element={<PostCreate />} />
-
-
-
+      <Route path="/users" element={<UserList />} />
+      <Route path="/users/:id" element={<UserView />} />
+      <Route path="/users/profile" element={<UserProfile />} />
       <Route element={<Authorized token={token} />}>
         {/* Add Routes here */}
         {/* Tag routes moved above for now */}
