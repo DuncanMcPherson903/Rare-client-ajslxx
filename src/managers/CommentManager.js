@@ -29,17 +29,30 @@ export const getCommentById = (commentId) => {
   return fetch(`${API_URL}/comments/${commentId}`).then(res => res.json());
 };
 
-export const updateComment = (commentId, content) => {
+export const updateComment = (commentId, commentData) => {
   return fetch(`${API_URL}/comments/${commentId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ content })
+    body: JSON.stringify(commentData)
   }).then(res => res.json());
 };
 
 export const getPostCommentsWithDetails = (postId) => {
+  return fetch(`${API_URL}/posts/${postId}/comments-with-details`)
+    .then(res => res.json())
+    .then(data => {
+      // The API returns {post: {...}, comments: [...]}
+      // We need to return just the comments array
+      if (data && data.comments && Array.isArray(data.comments)) {
+        return data.comments;
+      }
+      return [];
+    });
+};
+
+export const getPostWithCommentsDetails = (postId) => {
   return fetch(`${API_URL}/posts/${postId}/comments-with-details`)
     .then(res => res.json());
 };

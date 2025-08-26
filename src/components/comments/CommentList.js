@@ -1,7 +1,7 @@
 import "./CommentList.css";
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getComments, deleteComment, updateComment, getPostCommentsWithDetails, getPostById } from "../../managers/CommentManager";
+import { getComments, deleteComment, updateComment, getPostCommentsWithDetails, getPostById, getPostWithCommentsDetails } from "../../managers/CommentManager";
 import { CommentEdit } from "./CommentEdit";
 
 export const CommentList = ({ postId = null, showDetails = false }) => {
@@ -35,7 +35,12 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
       
       if (currentPostId && showDetails) {
         // Fetch comments with author details for a specific post
-        commentsData = await getPostCommentsWithDetails(currentPostId);
+        const response = await getPostWithCommentsDetails(currentPostId);
+        commentsData = response.comments || [];
+        // Also set the post data if we have it
+        if (response.post) {
+          setPost(response.post);
+        }
       } else if (currentPostId) {
         // Fetch comments for a specific post without details
         commentsData = await getPostCommentsWithDetails(currentPostId);
@@ -44,15 +49,21 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
         commentsData = await getComments();
       }
       
+      // Ensure commentsData is always an array
+      if (!Array.isArray(commentsData)) {
+        commentsData = [];
+      }
+      
       // Sort comments by creation date, most recent first
       if (commentsData && Array.isArray(commentsData)) {
-        commentsData.sort((a, b) => new Date(b.createdAt || b.created_at || b.dateCreated) - new Date(a.createdAt || a.created_at || a.dateCreated));
+        commentsData.sort((a, b) => new Date(b.createdAt || b.created_at || b.dateCreated || b.createdOn) - new Date(a.createdAt || a.created_at || a.dateCreated || a.createdOn));
       }
       
       setComments(commentsData || []);
     } catch (err) {
       setError("Failed to load comments");
       console.error("Error loading comments:", err);
+      setComments([]); // Ensure comments is always an array
     } finally {
       setLoading(false);
     }
@@ -60,7 +71,8 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
 
   useEffect(() => {
     const loadData = async () => {
-      if (currentPostId) {
+      // If we're not showing details and have a postId, we need to load the post separately
+      if (currentPostId && !showDetails) {
         await loadPost(currentPostId);
       }
       await loadComments();
@@ -72,14 +84,16 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
     setEditingComment(comment);
   };
 
-  const handleSaveEdit = async (content) => {
+  const handleSaveEdit = async (commentData) => {
     try {
-      await updateComment(editingComment.id, content);
+      await updateComment(editingComment.id, commentData);
       setEditingComment(null);
       await loadComments();
+      return true; // Return success
     } catch (err) {
       setError("Failed to update comment");
       console.error("Error updating comment:", err);
+      return false; // Return failure
     }
   };
 
@@ -123,7 +137,7 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
               By: {comment.authorDisplayName || `${comment.authorFirstName} ${comment.authorLastName}`}
             </span>
             <span className="comment-date">
-              {formatDate(comment.createdAt || comment.created_at || comment.dateCreated)}
+              {formatDate(comment.createdAt || comment.created_at || comment.dateCreated || comment.createdOn)}
             </span>
           </div>
         </div>
@@ -186,12 +200,12 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
       )}
 
       <div className="comment-list-simple">
-        {comments.length === 0 && !loading ? (
+        {(!Array.isArray(comments) || comments.length === 0) && !loading ? (
           <div className="no-comments">
             {currentPostId ? "No comments on this post yet." : "No comments found."}
           </div>
         ) : (
-          comments.map((comment, index) => (
+          Array.isArray(comments) && comments.map((comment, index) => (
             <div key={comment.id || index} className="comment-item-simple">
               <div className="comment-content">
                 {renderCommentDetails(comment)}
@@ -201,15 +215,32 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
                 <div className="comment-actions">
                   <button
                     className="edit-button"
-                    onClick={() => handleEdit(comment)}
+                    onClick={() => navigate(`/comments/${comment.id}`)}
+                    style={{ fontSize: "0.8rem", padding: "6px 12px" }}
+                  >
+                    View
+                  </button>
+                  <button
+                    className="edit-button"
+                    onClick={() => navigate(`/comments/${comment.id}/edit`)}
                     disabled={editingComment !== null}
+                    style={{ fontSize: "0.8rem", padding: "6px 12px" }}
                   >
                     Edit
+                  </button>
+                  <button
+                    className="edit-button"
+                    onClick={() => handleEdit(comment)}
+                    disabled={editingComment !== null}
+                    style={{ fontSize: "0.8rem", padding: "6px 12px", background: "#28a745" }}
+                  >
+                    Inline Edit
                   </button>
                   <button
                     className="delete-button"
                     onClick={() => handleDelete(comment.id)}
                     disabled={editingComment !== null}
+                    style={{ fontSize: "0.8rem", padding: "6px 12px" }}
                   >
                     Delete
                   </button>
