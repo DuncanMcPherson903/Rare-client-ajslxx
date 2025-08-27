@@ -30,3 +30,13 @@ export const editPost = (postId) => {
     });
   }
 };
+
+export const searchPosts = (query) => {
+    return fetch(`http://localhost:5000/posts/search?q=${encodeURIComponent(query)}`)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        });
+};

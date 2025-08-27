@@ -1,6 +1,6 @@
 import "./post.css";
 import { useEffect, useState } from "react";
-import { getPosts, deletePost, editPost } from "../../managers/PostManager";
+import { getPosts, deletePost, editPost, searchPosts } from "../../managers/PostManager";
 
 export const PostList = () => {
     const [posts, setPosts] = useState([]);
@@ -16,9 +16,14 @@ export const PostList = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        fetch(`/api/posts/search?q=${encodeURIComponent(query)}`)
-            .then(res => res.json())
-            .then(data => setPosts(data));
+        if (query.trim()) {
+            // If there's a search query, perform search
+            searchPosts(query)
+                .then(setPosts);
+        } else {
+            // If query is empty, reload all posts
+            loadPosts();
+        }
     };
 
     return (
@@ -35,14 +40,23 @@ export const PostList = () => {
                     value={query}
                     onChange={e => setQuery(e.target.value)}
                 />
-                <button type="submit">Search</button>
+                <button type="submit">
+                    {query.trim() ? 'Search' : 'Show All'}
+                </button>
             </form>
+            
             <ul className="post-list-content">
                 {posts.map((post, index) => (
                     <li key={post.id || index} className="post-item-simple">
                         <div className="post-details">
                             <h3>{post.title || `Post ${index + 1}`}</h3>
-                            <div> <img src={post.image_url} alt="Post" style={{maxWidth: '100px', height: 'auto'}} /></div>
+                            <div> 
+                                <img 
+                                    src={post.image_url} 
+                                    alt="Post" 
+                                    style={{maxWidth: '100px', height: 'auto'}} 
+                                /> 
+                            </div>
                             <div> {post.content || 'No content'}</div>
                             <div className="post-details-fine">
                                 <p><strong>Author:</strong> {post.user_id}</p>
