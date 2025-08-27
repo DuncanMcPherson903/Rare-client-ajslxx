@@ -8,6 +8,7 @@ export const PostList = () => {
     const [sortBy, setSortBy] = useState("");
     const navigate = useNavigate();
 
+
     const loadPosts = () => {
         getPosts().then(setPosts);
     }
@@ -73,6 +74,7 @@ export const PostList = () => {
                 </div>
             </div>
 
+
             <ul className="post-list-content">
                 {sortedPosts.map((post, index) => (
                     <li key={post.id || index} className="post-item-simple">
@@ -120,8 +122,4 @@ export const PostList = () => {
             </ul>
         </div>
     )
-
-
-
-
 }
