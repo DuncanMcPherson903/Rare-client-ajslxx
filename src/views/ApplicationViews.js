@@ -42,9 +42,16 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/reactions" element={<ReactionList />} />
       <Route path="/reactions/create" element={<ReactionCreate />} />
       <Route path="/posts/create" element={<PostCreate />} />
+
+      <Route path="/posts/details" element={<PostsDetails />} />
+
+
+
+
       <Route path="/users" element={<UserList />} />
       <Route path="/users/:id" element={<UserView />} />
       <Route path="/users/profile" element={<UserProfile />} />
+
       <Route element={<Authorized token={token} />}>
         {/* Add Routes here */}
         {/* Tag routes moved above for now */}
