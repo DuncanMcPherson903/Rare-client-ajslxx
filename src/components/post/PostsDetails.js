@@ -1,9 +1,15 @@
 import { useLocation } from "react-router-dom";
 import "./postsDetails.css";
+import { CommentCreate } from "../comments/CommentCreate";
 
 export const PostsDetails = () => {
     const location = useLocation();
-    const { title, imageUrl, content, userId, categoryId, publicationDate, approved } = location.state || {};
+    const { title, imageUrl, content, userId, categoryId, publicationDate, approved, postId } = location.state || {};
+
+    const handleCommentCreated = () => {
+        console.log("Comment created successfully!");
+        // You could add a success message or refresh functionality here
+    };
 
     if (!location.state) {
         return <div>No post data found. Please go back and select a post.</div>;
@@ -46,6 +52,17 @@ export const PostsDetails = () => {
                     <strong>Approved:</strong> {approved ? "Yes" : "No"}
                 </div>
             </div>
+
+            {/* Add Comment Section */}
+            {postId && (
+                <div className="add-comment-section">
+                    <h3>Add a Comment</h3>
+                    <CommentCreate 
+                        postId={parseInt(postId)} 
+                        onCommentCreated={handleCommentCreated}
+                    />
+                </div>
+            )}
         </div>
     );
 };

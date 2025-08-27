@@ -1,6 +1,6 @@
 import "./post.css";
 import { useEffect, useState } from "react";
-import { getPosts,  editPost } from "../../managers/PostManager";
+import { getPosts } from "../../managers/PostManager";
 import { useNavigate } from "react-router-dom";
 
 export const PostList = () => {
@@ -91,13 +91,10 @@ export const PostList = () => {
                         <div className="post-actions">
                             <button
                                 className="edit-button"
-                                onClick={() => editPost(post.id).then(() => loadPosts())}
+                                onClick={() => navigate(`/posts/${post.id}/comments`)}
                             >
                                 View Comments
                             </button>
-
-                        </div>
-                        <div className="post-details-btn">
                             <button
                                 className="edit-button"
                                 onClick={() => navigate('/posts/details', {
@@ -115,7 +112,6 @@ export const PostList = () => {
                             >
                                 Details
                             </button>
-
                         </div>
                     </li>
                 ))}

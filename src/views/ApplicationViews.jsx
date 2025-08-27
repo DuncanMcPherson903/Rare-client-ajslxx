@@ -7,6 +7,8 @@ import { TagCreate } from "../components/tag/TagCreate"
 import { CategoryList } from "../components/category/CategoryList"
 import { CategoryCreate } from "../components/category/CategoryCreate"
 import { PostList } from "../components/post/post"
+import { PostDetail } from "../components/post/PostDetail"
+import { PostEdit } from "../components/post/PostEdit"
 import { CommentList } from "../components/comments/CommentList"
 import { CommentCreate } from "../components/comments/CommentCreate"
 import { ReactionList } from "../components/reaction/ReactionList"
@@ -25,6 +27,9 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/categories" element={<CategoryList />} />
       <Route path="/categories/create" element={<CategoryCreate />} />
       <Route path="/posts" element={<PostList />} />
+      <Route path="/posts/:postId" element={<PostDetail />} />
+      <Route path="/posts/:postId/edit" element={<PostEdit />} />
+      <Route path="/posts/:postId/comments" element={<CommentList showDetails={true} />} />
       <Route path="/comments" element={<CommentList />} />
       <Route path="/comments/create" element={<CommentCreate />} />
       <Route path="/reactions" element={<ReactionList />} />
