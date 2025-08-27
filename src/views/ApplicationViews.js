@@ -18,6 +18,7 @@ import { ReactionCreate } from "../components/reaction/ReactionCreate"
 import { UserList } from "../components/user/UserList"
 import { UserView } from "../components/user/UserView"
 import { UserProfile } from "../components/user/UserProfile"
+import { PostsDetails } from "../components/post/PostsDetails"
 
 
 export const ApplicationViews = ({ token, setToken }) => {

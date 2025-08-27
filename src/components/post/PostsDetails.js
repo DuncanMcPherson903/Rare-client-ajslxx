@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import "./postsDetails.css";
+import "./PostsDetails.css";
 
 export const PostsDetails = () => {
     const location = useLocation();
