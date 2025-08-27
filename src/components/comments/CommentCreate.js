@@ -13,8 +13,13 @@ export const CommentCreate = ({ postId, onCommentCreated }) => {
             return;
         }
 
-        // Get authorId from localStorage or context (assuming user is logged in)
-        const authorId = parseInt(localStorage.getItem("rare_user_id") || "1");
+        // Get authorId from localStorage - try multiple possible keys
+        let authorId = parseInt(localStorage.getItem("rare_user_id"));
+        if (!authorId || isNaN(authorId)) {
+            // Fallback to using auth_token as user ID (if it's numeric)
+            const token = localStorage.getItem("auth_token");
+            authorId = parseInt(token) || 1; // Default to 1 if no valid ID found
+        }
 
         const commentData = {
             postId: postId,
@@ -29,6 +34,9 @@ export const CommentCreate = ({ postId, onCommentCreated }) => {
             } else {
                 navigate("/comments");
             }
+        }).catch(err => {
+            console.error("Error creating comment:", err);
+            alert("Failed to create comment. Please try again.");
         });
     };
 

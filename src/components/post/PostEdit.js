@@ -1,12 +1,10 @@
-import "./post.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPostById } from "../../managers/CommentManager";
-import { PostReactions } from "./PostReactions";
 import { PostHeaderImageUpload } from "./PostHeaderImageUpload";
-import { CommentCreate } from "../comments/CommentCreate";
+import "./post.css";
 
-export const PostDetail = () => {
+export const PostEdit = () => {
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -39,12 +37,6 @@ export const PostDetail = () => {
             imageUrl: newImageUrl,
             image_url: newImageUrl
         }));
-    };
-
-    const handleCommentCreated = () => {
-        // You could refresh the page or show a success message
-        // For now, we'll just log it. You might want to add a comments count or recent comments display
-        console.log("Comment created successfully!");
     };
 
     if (loading) {
@@ -88,47 +80,45 @@ export const PostDetail = () => {
             <div className="post-header">
                 <button 
                     className="edit-button"
-                    onClick={() => navigate("/posts")}
+                    onClick={() => navigate(`/posts/${postId}`)}
                     style={{ marginBottom: "20px" }}
                 >
-                    ← Back to Posts
+                    ← Back to Post
                 </button>
+                <h2>Edit Post: {post.title}</h2>
             </div>
 
-            <div className="post-header-text">{post.title}</div>
-            
             <div className="post-item-simple">
                 <div className="post-details">
                     <h3>{post.title}</h3>
-                    {post.imageUrl && (
+                    {(post.imageUrl || post.image_url) && (
                         <div>
+                            <h4>Current Header Image:</h4>
                             <img 
                                 src={post.imageUrl || post.image_url} 
-                                alt="Post" 
-                                style={{maxWidth: '300px', height: 'auto'}} 
+                                alt="Post header" 
+                                style={{
+                                    maxWidth: '100%', 
+                                    maxHeight: '300px', 
+                                    height: 'auto',
+                                    borderRadius: '8px',
+                                    marginBottom: '20px',
+                                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                                }} 
                             />
                         </div>
                     )}
+                    
                     <div style={{ marginTop: "15px", lineHeight: "1.6" }}>
-                        {post.content || 'No content'}
+                        <strong>Content:</strong>
+                        <p>{post.content || 'No content'}</p>
                     </div>
+                    
                     <div className="post-details-fine">
                         <p><strong>Author:</strong> {post.userId || post.user_id}</p>
                         <p><strong>Category:</strong> {post.categoryId || post.category_id}</p>
                         <div><strong>Date Created:</strong> {post.publicationDate || post.publication_date}</div>
                     </div> 
-                </div>
-                
-                {/* Post Reactions Section */}
-                <PostReactions postId={post.id} />
-                
-                {/* Add Comment Section */}
-                <div className="post-detail-add-comment-section">
-                    <h3>Add a Comment</h3>
-                    <CommentCreate 
-                        postId={parseInt(post.id)} 
-                        onCommentCreated={handleCommentCreated}
-                    />
                 </div>
                 
                 {/* Post Header Image Upload Section */}
@@ -140,16 +130,15 @@ export const PostDetail = () => {
                 <div className="post-actions">
                     <button
                         className="edit-button"
-                        onClick={() => navigate(`/posts/${post.id}/comments`)}
+                        onClick={() => navigate(`/posts/${post.id}`)}
                     >
-                        View Comments
+                        View Post
                     </button>
                     <button
                         className="edit-button"
-                        onClick={() => navigate(`/posts/${post.id}/edit`)}
-                        style={{ marginLeft: "10px" }}
+                        onClick={() => navigate("/posts")}
                     >
-                        Edit Post
+                        Back to Posts
                     </button>
                 </div>
             </div>

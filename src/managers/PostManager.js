@@ -30,3 +30,29 @@ export const editPost = (postId) => {
     });
   }
 };
+
+// Post Header Image Functions
+export const updatePostHeaderImage = (postId, imageData, fileName, contentType) => {
+  return fetch(`${API_URL}/posts/${postId}/header-image`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      imageData,
+      fileName,
+      contentType
+    })
+  }).then(res => res.json());
+};
+
+export const getPostHeaderImage = (postId) => {
+  return fetch(`${API_URL}/posts/${postId}/header-image`)
+    .then(res => res.text());
+};
+
+export const deletePostHeaderImage = (postId) => {
+  return fetch(`${API_URL}/posts/${postId}/header-image`, {
+    method: "DELETE"
+  }).then(res => res.json());
+};

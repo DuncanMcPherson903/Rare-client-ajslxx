@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getComments, deleteComment, updateComment, getPostCommentsWithDetails, getPostById, getPostWithCommentsDetails } from "../../managers/CommentManager";
 import { CommentEdit } from "./CommentEdit";
+import { CommentCreate } from "./CommentCreate";
 
 export const CommentList = ({ postId = null, showDetails = false }) => {
   const [comments, setComments] = useState([]);
@@ -197,6 +198,17 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
           onSave={handleSaveEdit}
           onCancel={handleCancelEdit}
         />
+      )}
+
+      {/* Add Comment Section - only show for post-specific views */}
+      {currentPostId && (
+        <div className="add-comment-section">
+          <h3>Add a Comment</h3>
+          <CommentCreate 
+            postId={parseInt(currentPostId)} 
+            onCommentCreated={loadComments}
+          />
+        </div>
       )}
 
       <div className="comment-list-simple">
