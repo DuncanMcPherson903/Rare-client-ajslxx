@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
-import "./PostsDetails.css";
+import "./postsDetails.css";
 
 export const PostsDetails = () => {
     const location = useLocation();
-    const { title, imageUrl, postId, content, userId, categoryId, publicationDate, approved } = location.state || {};
+    const { title, imageUrl, content, userId, categoryId, publicationDate, approved } = location.state || {};
 
     if (!location.state) {
         return <div>No post data found. Please go back and select a post.</div>;
