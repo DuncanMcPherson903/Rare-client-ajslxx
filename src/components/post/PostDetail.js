@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPostById } from "../../managers/CommentManager";
 import { PostReactions } from "./PostReactions";
-import { PostHeaderImageUpload } from "./PostHeaderImageUpload";
-import { CommentCreate } from "../comments/CommentCreate";
 import { CommentList } from "../comments/CommentList";
 
 export const PostDetail = () => {
@@ -34,19 +32,6 @@ export const PostDetail = () => {
         }
     }, [postId]);
 
-    const handleImageUpdate = (newImageUrl) => {
-        setPost(prevPost => ({
-            ...prevPost,
-            imageUrl: newImageUrl,
-            image_url: newImageUrl
-        }));
-    };
-
-    const handleCommentCreated = () => {
-        // You could refresh the page or show a success message
-        // For now, we'll just log it. You might want to add a comments count or recent comments display
-        console.log("Comment created successfully!");
-    };
 
     if (loading) {
         return (
@@ -128,22 +113,7 @@ export const PostDetail = () => {
                     <h3>Comments</h3>
                     <CommentList postId={post.id} showDetails={true} />
                 </div>
-                
-                {/* Add Comment Section */}
-                <div className="post-detail-add-comment-section">
-                    <h3>Add a Comment</h3>
-                    <CommentCreate 
-                        postId={parseInt(post.id)} 
-                        onCommentCreated={handleCommentCreated}
-                    />
-                </div>
-                
-                {/* Post Header Image Upload Section */}
-                <PostHeaderImageUpload 
-                    postId={post.id} 
-                    onImageUpdate={handleImageUpdate}
-                />
-                
+
                 <div className="post-actions">
                     <button
                         className="edit-button"

@@ -164,9 +164,9 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
         <div className="post-header">
           <button 
             className="back-to-post-btn"
-            onClick={() => navigate(`/posts/${currentPostId}`)}
+            onClick={() => navigate("/posts")}
           >
-            ← Back to Post
+            ← Back to Posts
           </button>
           <h2>Comments on: {post.title}</h2>
         </div>
@@ -198,17 +198,6 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
           onSave={handleSaveEdit}
           onCancel={handleCancelEdit}
         />
-      )}
-
-      {/* Add Comment Section - only show for post-specific views */}
-      {currentPostId && (
-        <div className="add-comment-section">
-          <h3>Add a Comment</h3>
-          <CommentCreate 
-            postId={parseInt(currentPostId)} 
-            onCommentCreated={loadComments}
-          />
-        </div>
       )}
 
       <div className="comment-list-simple">
@@ -262,6 +251,17 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
           ))
         )}
       </div>
+
+      {/* Add Comment Section - only show for post-specific views */}
+      {currentPostId && (
+        <div className="add-comment-section">
+          <h3>Add a Comment</h3>
+          <CommentCreate 
+            postId={parseInt(currentPostId)} 
+            onCommentCreated={loadComments}
+          />
+        </div>
+      )}
     </div>
   );
 };

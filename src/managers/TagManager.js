@@ -40,13 +40,15 @@ export const createTag = (tagData) => {
 
 export const editTag = (tagId) => {
   const newLabel = prompt("Enter new tag label:");
-  if (newLabel) {
+  if (newLabel && newLabel.trim()) {
     return fetch(`${API_URL}/tags/${tagId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ label: newLabel }),
+      body: JSON.stringify({ label: newLabel.trim() }),
     });
   }
+  // Return a resolved promise if user cancels or enters empty string
+  return Promise.resolve();
 };
