@@ -14,6 +14,7 @@ import { PostCreate } from "../components/post/PostCreate"
 import { UserList } from "../components/user/UserList"
 import { UserView } from "../components/user/UserView"
 import { UserProfile } from "../components/user/UserProfile"
+import { MyPostsList } from "../components/post/MyPosts"
 
 export const ApplicationViews = ({ token, setToken }) => {
   return <>
@@ -30,6 +31,7 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/categories/create" element={<CategoryCreate />} />
       <Route path="/posts" element={<PostList />} />
       <Route path="/posts/create" element={<PostCreate />} />
+      <Route path="/MyPosts" element={<MyPostsList />} />
       <Route path="/users" element={<UserList />} />
       <Route path="/users/:id" element={<UserView />} />
       <Route path="/users/profile" element={<UserProfile />} />

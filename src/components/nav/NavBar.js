@@ -37,7 +37,6 @@ export const NavBar = ({ token, setToken }) => {
           <Link to="/tags/create" className="navbar-item">Create Tag</Link>
           <Link to="/categories" className="navbar-item">Category Management</Link>
           <Link to="/users" className="navbar-item">Users</Link>
-          <Link to="/test" className="navbar-item">Test</Link>
         </div>
 
         <div className="navbar-end">
@@ -46,10 +45,14 @@ export const NavBar = ({ token, setToken }) => {
               {
                 token
                   ?
-                  <button className="button is-outlined" onClick={() => {
+                  <div style = {{display: "flex"}}>
+                    <Link to="/users/profile" className="button is-link">My Profile</Link>
+                    <button className="button is-outlined" onClick={() => {
                     setToken('')
                     navigate('/login')
-                  }}>Logout</button>
+                    }}>Logout</button>
+                  </div>
+                  
                   :
                   <>
                     <Link to="/register" className="button is-link">Register</Link>

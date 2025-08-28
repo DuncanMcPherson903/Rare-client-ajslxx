@@ -1,17 +1,25 @@
+import { getTotalSubsOfUser } from "../../managers/SubscriptionManager";
 import { getUserById } from "../../managers/UserManager";
 import "./UserProfile.css";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const UserProfile = () => {
   const [token] = useState(localStorage.getItem("auth_token"));
   const [user, setUser] = useState("");
+  const [totalSubs, setTotalSubs] = useState(0);
 
   const loadUser = (userId) => {
     getUserById(userId).then(setUser);
   };
 
+  const loadSubs = (userId) => {
+    getTotalSubsOfUser(userId).then(setTotalSubs)
+  }
+
   useEffect(() => {
     loadUser(token);
+    loadSubs(token);
   });
 
   return (
@@ -39,10 +47,16 @@ export const UserProfile = () => {
                 </div>
               </div>
 
-              <div className="content">
-                {user.bio}
-                <br />
-                <p>Creation Date: {user.createdOn.slice(0, 10)}</p>
+              <div className="profile-content">
+                <div className="profile-content-div">
+                  {user.bio}
+                  <br />
+                  Subscriber Count: {totalSubs}
+                  <p>Creation Date: {user.createdOn.slice(0, 10)}</p>
+                </div>
+                <div className="profile-content-div">
+                  <Link to="/MyPosts" className="button is-link">My Posts</Link>
+                </div>
               </div>
             </div>
           </div>
