@@ -42,10 +42,9 @@ export const CommentCreate = ({ postId, onCommentCreated }) => {
 
     return (
         <div className="comment-create-form">
-            <h1>Comment</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="comment">Comment</label>
+                    <label htmlFor="comment"></label>
                     <textarea 
                         id="comment" 
                         value={comment} 
