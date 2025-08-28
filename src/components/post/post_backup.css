@@ -1,0 +1,307 @@
+@keyframes head1 {
+    0% { color: #ff3131; }
+    25% { color: #ff8737; }
+    50% { color: #b605b6; }
+    75% { color: #4931ff; }
+    100% { color: #ff3131; }
+}
+.post-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    border: 115px solid #ff8737;
+    border-radius: 10px;
+    background-color: #05b669f1;
+}
+.post-header-text {
+    color: #4931ff;
+    font-size: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 2px solid #0f0f0f;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    animation: head1 8s; 
+}
+.post-header {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #4931ff;
+    text-align: left;
+}
+h3 {
+    color: #ff3131;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+.post-details{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 2px solid #ff3131;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.post-details-fine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+    border: 5px solid #ff3131;
+    border-radius: 10px;
+}
+
+/* Tag display styles - matching your colorful theme */
+.post-tags {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border: 2px solid #4931ff;
+    border-radius: 10px;
+    background-color: rgba(255, 135, 55, 0.1);
+}
+
+.tag-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff3131, #ff8737, #b605b6, #4931ff);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+    border: 2px solid #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    animation: tagGlow 3s infinite alternate;
+}
+
+@keyframes tagGlow {
+    0% { box-shadow: 0 0 5px #ff3131; }
+    25% { box-shadow: 0 0 8px #ff8737; }
+    50% { box-shadow: 0 0 10px #b605b6; }
+    75% { box-shadow: 0 0 8px #4931ff; }
+    100% { box-shadow: 0 0 5px #ff3131; }
+}
+
+.manage-tags-button {
+    background: linear-gradient(45deg, #05b669, #4931ff);
+    color: white;
+    border: 3px solid #ff8737;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.manage-tags-button:hover {
+    background: linear-gradient(45deg, #4931ff, #05b669);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff8737;
+}
+
+.post-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border: 2px solid #ff8737;
+    border-radius: 10px;
+    background-color: rgba(73, 49, 255, 0.1);
+}
+
+/* Update your edit button to match the style too */
+.edit-button2 {
+    background: linear-gradient(45deg, #ff3131, #b605b6);
+    color: white;
+    border: 3px solid #ff8737;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.edit-button2:hover {
+    background: linear-gradient(45deg, #b605b6, #ff3131);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff3131;
+}
+
+/* Search form styling to match your theme */
+form {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 5px solid #ff8737;
+    border-radius: 10px;
+    background: linear-gradient(45deg, rgba(255, 49, 49, 0.1), rgba(255, 135, 55, 0.1));
+}
+
+form input {
+    padding: 0.7rem;
+    border: 3px solid #4931ff;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+form button {
+    background: linear-gradient(45deg, #ff8737, #4931ff);
+    color: white;
+    border: 3px solid #ff3131;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background: linear-gradient(45deg, #4931ff, #ff8737);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #b605b6;
+}
+  
+.edit-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.edit-button:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Add comment section styles for PostDetail */
+.add-comment-section {
+    margin: 30px 0;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
+}
+
+.add-comment-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Comment create form styles - reusing from CommentList */
+.comment-create-form {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.comment-create-form h1 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.comment-create-form .form-group {
+    margin-bottom: 15px;
+}
+
+.comment-create-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.comment-create-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+.comment-create-form textarea:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+.comment-create-form button[type="submit"] {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+}
+
+.comment-create-form button[type="submit"]:hover {
+    background: #218838;
+}
+
+.comment-create-form button[type="submit"]:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Mobile responsiveness for post detail comment section */
+@media (max-width: 768px) {
+    .add-comment-section {
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .comment-create-form {
+        padding: 15px;
+    }
+    
+    .comment-create-form button[type="submit"] {
+        width: 100%;
+    }
+}
+
+/* PostDetail specific comment section styles */
+.post-detail-add-comment-section {
+    margin: 30px 0;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
+    display: block !important;
+    visibility: visible !important;
+}
+
+.post-detail-add-comment-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}

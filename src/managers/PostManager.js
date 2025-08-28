@@ -39,6 +39,8 @@ export const searchPosts = (query) => {
             }
             return res.json();
         });
+};
+
 // Post Header Image Functions
 export const updatePostHeaderImage = (postId, imageData, fileName, contentType) => {
   return fetch(`${API_URL}/posts/${postId}/header-image`, {

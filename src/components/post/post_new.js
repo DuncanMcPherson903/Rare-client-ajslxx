@@ -1,6 +1,6 @@
 import "./post.css";
 import { useEffect, useState } from "react";
-import { getPosts } from "../../managers/PostManager";
+import { getPosts, editPost } from "../../managers/PostManager";
 import { getPostTags } from "../../managers/TagManager";
 import { ManageTags } from "../tag/ManageTags";
 import { useNavigate } from "react-router-dom";
@@ -116,35 +116,50 @@ export const PostList = () => {
                 <p>Refreshed: {new Date().toLocaleDateString()}</p>
             </div>
 
-            <div className="post-controls">
-                <form onSubmit={handleSearch} className="search-form">
-                    <input
-                        type="text"
-                        placeholder="Search posts..."
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        className="search-input"
-                    />
-                    <button type="submit" className="search-button">
-                        Search
-                    </button>
-                </form>
+            <form onSubmit={handleSearch} style={{ marginBottom: '1rem' }}>
+                <input
+                    type="text"
+                    placeholder="Search posts..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    style={{ 
+                        padding: '8px', 
+                        marginRight: '8px', 
+                        borderRadius: '4px', 
+                        border: '1px solid #ddd',
+                        width: '200px'
+                    }}
+                />
+                <button type="submit" style={{ 
+                    padding: '8px 16px', 
+                    backgroundColor: '#007bff', 
+                    color: 'white', 
+                    border: 'none', 
+                    borderRadius: '4px',
+                    cursor: 'pointer'
+                }}>
+                    Search
+                </button>
+            </form>
 
-                <div className="sort-controls">
-                    <label htmlFor="sort-select">Sort by:</label>
-                    <select 
-                        id="sort-select"
-                        value={sortBy} 
-                        onChange={handleSortChange}
-                        className="sort-select"
-                    >
-                        <option value="">-- Select Sort Option --</option>
-                        <option value="date">Date (Newest First)</option>
-                        <option value="user">User ID</option>
-                        <option value="category">Category ID</option>
-                        <option value="author">Author ID</option>
-                    </select>
-                </div>
+            <div style={{ marginBottom: '1rem' }}>
+                <label htmlFor="sort-select" style={{ marginRight: '8px' }}>Sort by:</label>
+                <select 
+                    id="sort-select"
+                    value={sortBy} 
+                    onChange={handleSortChange}
+                    style={{ 
+                        padding: '4px 8px',
+                        borderRadius: '4px',
+                        border: '1px solid #ddd'
+                    }}
+                >
+                    <option value="">-- Select Sort Option --</option>
+                    <option value="date">Date (Newest First)</option>
+                    <option value="user">User ID</option>
+                    <option value="category">Category ID</option>
+                    <option value="author">Author ID</option>
+                </select>
             </div>
 
             <ul className="post-list-content">

@@ -5,6 +5,7 @@ import { getPostById } from "../../managers/CommentManager";
 import { PostReactions } from "./PostReactions";
 import { PostHeaderImageUpload } from "./PostHeaderImageUpload";
 import { CommentCreate } from "../comments/CommentCreate";
+import { CommentList } from "../comments/CommentList";
 
 export const PostDetail = () => {
     const [post, setPost] = useState(null);
@@ -121,6 +122,12 @@ export const PostDetail = () => {
                 
                 {/* Post Reactions Section */}
                 <PostReactions postId={post.id} />
+                
+                {/* Comments Section */}
+                <div className="post-detail-comments-section">
+                    <h3>Comments</h3>
+                    <CommentList postId={post.id} showDetails={true} />
+                </div>
                 
                 {/* Add Comment Section */}
                 <div className="post-detail-add-comment-section">
