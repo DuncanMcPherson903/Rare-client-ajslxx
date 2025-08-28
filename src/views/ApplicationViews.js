@@ -18,8 +18,8 @@ import { ReactionCreate } from "../components/reaction/ReactionCreate"
 import { UserList } from "../components/user/UserList"
 import { UserView } from "../components/user/UserView"
 import { UserProfile } from "../components/user/UserProfile"
+import { MyPostsList } from "../components/post/MyPosts"
 import { PostsDetails } from "../components/post/PostsDetails"
-
 
 export const ApplicationViews = ({ token, setToken }) => {
   return <>
@@ -43,12 +43,8 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/reactions" element={<ReactionList />} />
       <Route path="/reactions/create" element={<ReactionCreate />} />
       <Route path="/posts/create" element={<PostCreate />} />
-
+      <Route path="/MyPosts" element={<MyPostsList />} />
       <Route path="/posts/details" element={<PostsDetails />} />
-
-
-
-
       <Route path="/users" element={<UserList />} />
       <Route path="/users/:id" element={<UserView />} />
       <Route path="/users/profile" element={<UserProfile />} />

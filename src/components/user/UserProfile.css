@@ -1,0 +1,8 @@
+.profile-content {
+  display: flex;
+  align-items: flex-end;
+}
+
+.profile-content-div {
+  margin: 0px 10px 0px 10px;
+}

@@ -4,6 +4,14 @@ export const getPosts = () => {
   return fetch(`${API_URL}/posts`).then(res => res.json());
 };
 
+export const getPostsByAuthorId = (id) => {
+  return fetch(`${API_URL}/posts/author/${id}`).then(res => res.json());
+};
+
+export const getFormattedPostsByAuthorId = (id) => {
+  return fetch(`${API_URL}/posts/author/format/${id}`).then(res => res.json());
+};
+
 export const deletePost = (id) => {
   return fetch(`${API_URL}/posts/${id}`, {
     method: "DELETE"

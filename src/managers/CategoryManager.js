@@ -4,6 +4,10 @@ export const getCategories = () => {
   return fetch(`${API_URL}/categories`).then(res => res.json());
 };
 
+export const getCategoryById = (id) => {
+  return fetch(`${API_URL}/categories/${id}`).then(res => res.json());
+};
+
 export const deleteCategory = (id) => {
   return fetch(`${API_URL}/categories/${id}`, {
     method: "DELETE"
