@@ -54,13 +54,124 @@ h3 {
     border-radius: 10px;
 }
 
-.post-actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
+/* Tag display styles - matching your colorful theme */
+.post-tags {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border: 2px solid #4931ff;
+    border-radius: 10px;
+    background-color: rgba(255, 135, 55, 0.1);
 }
 
+.tag-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff3131, #ff8737, #b605b6, #4931ff);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+    border: 2px solid #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    animation: tagGlow 3s infinite alternate;
+}
+
+@keyframes tagGlow {
+    0% { box-shadow: 0 0 5px #ff3131; }
+    25% { box-shadow: 0 0 8px #ff8737; }
+    50% { box-shadow: 0 0 10px #b605b6; }
+    75% { box-shadow: 0 0 8px #4931ff; }
+    100% { box-shadow: 0 0 5px #ff3131; }
+}
+
+.manage-tags-button {
+    background: linear-gradient(45deg, #05b669, #4931ff);
+    color: white;
+    border: 3px solid #ff8737;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.manage-tags-button:hover {
+    background: linear-gradient(45deg, #4931ff, #05b669);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff8737;
+}
+
+.post-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border: 2px solid #ff8737;
+    border-radius: 10px;
+    background-color: rgba(73, 49, 255, 0.1);
+}
+
+/* Update your edit button to match the style too */
+.edit-button2 {
+    background: linear-gradient(45deg, #ff3131, #b605b6);
+    color: white;
+    border: 3px solid #ff8737;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.edit-button2:hover {
+    background: linear-gradient(45deg, #b605b6, #ff3131);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff3131;
+}
+
+/* Search form styling to match your theme */
+form {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 5px solid #ff8737;
+    border-radius: 10px;
+    background: linear-gradient(45deg, rgba(255, 49, 49, 0.1), rgba(255, 135, 55, 0.1));
+}
+
+form input {
+    padding: 0.7rem;
+    border: 3px solid #4931ff;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+form button {
+    background: linear-gradient(45deg, #ff8737, #4931ff);
+    color: white;
+    border: 3px solid #ff3131;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+form button:hover {
+    background: linear-gradient(45deg, #4931ff, #ff8737);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #b605b6;
+  
 .edit-button {
     background: #007bff;
     color: white;
