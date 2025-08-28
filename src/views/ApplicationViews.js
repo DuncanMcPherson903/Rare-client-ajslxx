@@ -42,7 +42,6 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/posts/create" element={<PostCreate />} />
       <Route path="/reactions" element={<ReactionList />} />
       <Route path="/reactions/create" element={<ReactionCreate />} />
-      <Route path="/posts/create" element={<PostCreate />} />
 
       <Route path="/posts/details" element={<PostsDetails />} />
 

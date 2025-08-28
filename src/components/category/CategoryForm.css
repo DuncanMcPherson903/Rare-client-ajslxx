@@ -2,12 +2,43 @@
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-radius: 10px;
+    border: 3px solid #FF0000;
+    box-shadow: 
+        0 0 30px rgba(255, 0, 0, 0.6),
+        inset 0 0 20px rgba(255, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.category-create-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #FF0000, #DC143C, #FF0000);
+    animation: badass-glow 3s ease-in-out infinite;
 }
 
 .category-header {
     text-align: center;
     margin-bottom: 30px;
     padding: 20px;
-    background: #f8f9fa;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a1a1a 100%);
     border-radius: 8px;
+    border: 2px solid #FF0000;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+
+/* Badass glow animation for container border */
+@keyframes badass-glow {
+    0%, 100% {
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.6), inset 0 0 20px rgba(255, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 50px rgba(255, 0, 0, 0.9), inset 0 0 30px rgba(255, 0, 0, 0.2);
+    }
 }

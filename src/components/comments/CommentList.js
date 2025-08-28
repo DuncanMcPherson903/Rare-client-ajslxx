@@ -200,8 +200,8 @@ export const CommentList = ({ postId = null, showDetails = false }) => {
         />
       )}
 
-      {/* Add Comment Section - only show for post-specific views */}
-      {currentPostId && (
+      {/* Add Comment Section - only show for post-specific views AND when not in PostsDetails */}
+      {currentPostId && !showDetails && (
         <div className="add-comment-section">
           <h3>Add a Comment</h3>
           <CommentCreate 

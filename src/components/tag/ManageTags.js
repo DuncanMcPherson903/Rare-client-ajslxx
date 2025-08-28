@@ -1,5 +1,5 @@
 import "./ManageTags.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getTags, getPostTags, savePostTags } from "../../managers/TagManager";
 
 export const ManageTags = ({ postId, onClose, onSave }) => {
@@ -8,7 +8,7 @@ export const ManageTags = ({ postId, onClose, onSave }) => {
     const [originalTagIds, setOriginalTagIds] = useState([]); // Track original tags
     const [loading, setLoading] = useState(true);
 
-    const loadData = async () => {
+    const loadData = useCallback(async () => {
         try {
             const [tags, postTags] = await Promise.all([
                 getTags(),
@@ -23,11 +23,11 @@ export const ManageTags = ({ postId, onClose, onSave }) => {
             console.error('Error loading tags:', error);
             setLoading(false);
         }
-    };
+    }, [postId]);
 
     useEffect(() => {
         loadData();
-    }, [postId]);
+    }, [loadData]);
 
     const handleTagToggle = (tagId) => {
         setSelectedTagIds(prev => 

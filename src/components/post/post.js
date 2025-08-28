@@ -1,5 +1,5 @@
 import "./post.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { getPosts } from "../../managers/PostManager";
 import { getPostTags } from "../../managers/TagManager";
 import { ManageTags } from "../tag/ManageTags";
@@ -37,16 +37,16 @@ export const PostList = () => {
         }
     };
 
-    const loadPosts = () => {
+    const loadPosts = useCallback(() => {
         getPosts().then(posts => {
             setPosts(posts);
             loadPostTags(posts);
         });
-    };
+    }, []);
 
     useEffect(() => {
         loadPosts();
-    }, []);
+    }, [loadPosts]);
 
     const handleSearch = (e) => {
         e.preventDefault();

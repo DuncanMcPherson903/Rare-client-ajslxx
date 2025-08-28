@@ -47,6 +47,9 @@ export const editTag = (tagId) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ label: newLabel }),
-    });
+    }).then((res) => res.json());
+  } else {
+    // Return a resolved promise when user cancels
+    return Promise.resolve(null);
   }
 };

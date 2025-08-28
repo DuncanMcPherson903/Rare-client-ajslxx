@@ -15,10 +15,13 @@ export const TagList = () => {
   }, []);
 
   const handleEdit = (tagId) => {
-  editTag(tagId).then(() => {
-    loadTags();
-  });
-};
+    editTag(tagId).then((result) => {
+      // Only reload tags if the edit was successful (not cancelled)
+      if (result !== null) {
+        loadTags();
+      }
+    });
+  };
 
   return (
     <div className="tag-list-container">

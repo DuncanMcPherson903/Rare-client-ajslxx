@@ -1,20 +1,464 @@
+/* ==================== CYBERPUNK POST CREATE STYLES ==================== */
+
+/* AGGRESSIVE FONT RENDERING FIXES */
+.post-form-container,
+.post-form-container *,
+.form-group label,
+.form-input,
+.form-textarea,
+.submit-button,
+.checkbox-group label {
+  /* Font rendering */
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-synthesis: none !important;
+  text-rendering: optimizeLegibility !important;
+  font-kerning: auto !important;
+  font-feature-settings: "kern" 1, "liga" 1 !important;
+
+  /* Hardware acceleration */
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+  will-change: auto !important;
+
+  /* Force crisp rendering */
+  -webkit-text-stroke: 0.1px transparent !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: crisp-edges !important;
+}
+
+/* Force font family and size */
+.post-form-container * {
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', 'Liberation Mono', monospace !important;
+  font-variant-ligatures: none !important;
+  font-variant-numeric: oldstyle-nums !important;
+}
+:root {
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(196, 181, 253, 0.8);
+  --text-light: rgba(255, 255, 255, 0.9);
+  --transition-mystic: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --glow-purple: 0 0 20px rgba(147, 51, 234, 0.5);
+  --radius-organic: 25px;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
+  --font-base: 1rem;
+  --font-lg: 1.125rem;
+  --font-xl: 1.25rem;
+  --font-xxl: 1.5rem;
+  --font-xxxl: 2rem;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --neon-purple: #9333ea;
+  --neon-purple-light: #a855f7;
+  --neon-magenta: #ec4899;
+  --neon-teal: #06b6d4;
+  --text-neon: #ffffff;
+}
+
 .post-form-container {
-    border: 115px solid #ff3131;
-    background-color: #05b669f1;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #1a0a0a 0%, #2d1b1b 25%, #0f0f0f 50%, #1a1a1a 75%, #2a0a0a 100%);
+    border: 4px solid #FF0000;
+    border-radius: 15px;
+    box-shadow: 
+        0 0 50px rgba(255, 0, 0, 0.8),
+        0 0 100px rgba(255, 0, 0, 0.4),
+        inset 0 0 50px rgba(255, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: badass-glow 3s ease-in-out infinite alternate;
 }
-h2 {
-    color: #4931ff;
-    font-size: 30px;
-    margin-bottom: 20px;
+
+.post-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #FF0000, #FFD700, #00BFFF, #32CD32, #FF1493);
+    animation: racing-flow 2s linear infinite;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.post-form-container h2 {
+    color: #FF0000;
+    font-size: 2.5rem;
+    font-weight: 900;
     text-align: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    animation: head1 8s;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 
+        0 0 10px #FF0000,
+        0 0 20px #FF0000,
+        0 0 30px #FF0000,
+        0 0 40px #FF0000,
+        2px 2px 0px #000000,
+        -2px -2px 0px #000000,
+        2px -2px 0px #000000,
+        -2px 2px 0px #000000;
+    animation: badass-pulse 2s ease-in-out infinite;
+    position: relative;
 }
+
 .post-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    border: 3px solid #FF0000;
     border-radius: 10px;
-    background-color: #f6b605;
+    box-shadow: 
+        0 0 30px rgba(255, 0, 0, 0.6),
+        inset 0 0 30px rgba(255, 0, 0, 0.1);
+    position: relative;
+}
+
+.post-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-magenta), var(--neon-teal), var(--neon-purple));
+    animation: neon-flow 4s ease-in-out infinite reverse;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    position: relative;
+}
+
+.form-label {
+    color: #FF0000;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    text-shadow: 
+        0 0 5px #FF0000,
+        0 0 10px #FF0000,
+        1px 1px 0px #000000;
+    animation: badass-label-glow 3s ease-in-out infinite alternate;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border: 2px solid #FF0000;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 0 10px rgba(255, 0, 0, 0.3),
+        inset 0 0 10px rgba(255, 0, 0, 0.1);
+    position: relative;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #FF0000;
+    box-shadow: 
+        0 0 20px rgba(255, 0, 0, 0.8),
+        0 0 40px rgba(255, 0, 0, 0.4),
+        inset 0 0 20px rgba(255, 0, 0, 0.2);
+    transform: scale(1.02);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: rgba(255, 215, 0, 0.6) !important;
+    opacity: 0.7 !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    font-synthesis: none !important;
+    text-rendering: optimizeLegibility !important;
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.checkbox-group label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    cursor: pointer !important;
+    text-transform: none !important;
+    font-size: 1rem !important;
+    color: #ffffff !important;
+    font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', 'Liberation Mono', monospace !important;
+    font-weight: 500 !important;
+
+    /* Aggressive font rendering */
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    font-synthesis: none !important;
+    text-rendering: optimizeLegibility !important;
+    font-kerning: auto !important;
+    font-feature-settings: "kern" 1 !important;
+    -webkit-text-stroke: 0.1px transparent !important;
+}
+
+.form-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: #FFD700;
+    cursor: pointer;
+    border-radius: 5px;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+}
+
+/* Submit Button */
+.submit-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem 2rem !important;
+    background: linear-gradient(45deg, #8B0000 0%, #FF0000 50%, #DC143C 100%) !important;
+    border: 4px solid #FF0000 !important;
+    border-radius: 10px !important;
+    color: #FFFFFF !important;
+    font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', 'Liberation Mono', monospace !important;
+    font-weight: 900 !important;
+    font-size: 1.125rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 
+        0 0 30px rgba(255, 0, 0, 0.8),
+        0 0 60px rgba(255, 0, 0, 0.4),
+        inset 0 0 20px rgba(255, 0, 0, 0.2) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    align-self: center !important;
+    min-width: 200px !important;
+    text-shadow: 
+        2px 2px 0px #000000,
+        -1px -1px 0px #000000,
+        1px -1px 0px #000000,
+        -1px 1px 0px #000000 !important;
+    -webkit-text-stroke: 1px #000000 !important;
+
+    /* Aggressive font rendering */
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    font-synthesis: none !important;
+    text-rendering: optimizeLegibility !important;
+    font-kerning: auto !important;
+    font-feature-settings: "kern" 1 !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+}
+
+.submit-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.3s;
+}
+
+.submit-button:hover::before {
+    left: 100%;
+}
+
+.submit-button:hover {
+    background: linear-gradient(45deg, #DC143C 0%, #FF0000 50%, #8B0000 100%) !important;
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 
+        0 0 50px rgba(255, 0, 0, 1),
+        0 0 100px rgba(255, 0, 0, 0.6),
+        inset 0 0 30px rgba(255, 0, 0, 0.3) !important;
+    text-shadow: 
+        3px 3px 0px #000000,
+        -2px -2px 0px #000000,
+        2px -2px 0px #000000,
+        -2px 2px 0px #000000 !important;
+}
+
+.submit-button:active {
+    transform: translateY(-1px) scale(1.02) !important;
+    box-shadow: 
+        0 0 20px rgba(255, 0, 0, 0.8),
+        inset 0 0 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .post-form-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .post-form-container h2 {
+        font-size: 2rem;
+    }
+
+    .post-form {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+
+    .submit-button {
+        width: 100%;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .checkbox-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-form-container {
+        margin: 0.75rem;
+        padding: 1rem;
+    }
+
+    .post-form {
+        padding: 1rem;
+    }
+
+    .form-input,
+    .form-textarea {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+}
+
+/* ==================== FINAL AGGRESSIVE FONT RENDERING FIXES ==================== */
+
+/* Force crisp text rendering for all elements */
+.post-form-container * {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-synthesis: none !important;
+  text-rendering: optimizeLegibility !important;
+  font-kerning: auto !important;
+  font-feature-settings: "kern" 1 !important;
+  -webkit-text-stroke: 0.1px transparent !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: crisp-edges !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+}
+
+/* Browser-specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .post-form-container * {
+    -webkit-font-smoothing: antialiased !important;
+    -webkit-text-stroke: 0.1px transparent !important;
+  }
+}
+
+/* Force monospace font for all text inputs */
+input[type="text"],
+input[type="number"],
+input[type="url"],
+input[type="date"],
+textarea,
+button {
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', 'Liberation Mono', monospace !important;
+  font-variant-ligatures: none !important;
+  font-variant-numeric: oldstyle-nums !important;
+}
+
+/* ==================== BADASS ANIMATIONS ==================== */
+
+@keyframes badass-glow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 50px rgba(255, 0, 0, 0.8),
+      0 0 100px rgba(255, 0, 0, 0.4),
+      inset 0 0 50px rgba(255, 0, 0, 0.1);
+  }
+  50% { 
+    box-shadow: 
+      0 0 80px rgba(255, 0, 0, 1),
+      0 0 150px rgba(255, 0, 0, 0.6),
+      inset 0 0 80px rgba(255, 0, 0, 0.2);
+  }
+}
+
+@keyframes badass-pulse {
+  0%, 100% { 
+    text-shadow: 
+      0 0 10px #FF0000,
+      0 0 20px #FF0000,
+      0 0 30px #FF0000,
+      0 0 40px #FF0000,
+      2px 2px 0px #000000,
+      -2px -2px 0px #000000,
+      2px -2px 0px #000000,
+      -2px 2px 0px #000000;
+  }
+  50% { 
+    text-shadow: 
+      0 0 20px #FF0000,
+      0 0 40px #FF0000,
+      0 0 60px #FF0000,
+      0 0 80px #FF0000,
+      3px 3px 0px #000000,
+      -3px -3px 0px #000000,
+      3px -3px 0px #000000,
+      -3px 3px 0px #000000;
+  }
+}
+
+@keyframes badass-label-glow {
+  0%, 100% { 
+    text-shadow: 
+      0 0 5px #FF0000,
+      0 0 10px #FF0000,
+      1px 1px 0px #000000;
+  }
+  50% { 
+    text-shadow: 
+      0 0 15px #FF0000,
+      0 0 25px #FF0000,
+      2px 2px 0px #000000;
+  }
 }

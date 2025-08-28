@@ -37,10 +37,13 @@ export const CategoryList = () => {
   }, []);
 
   const handleEdit = (categoryId) => {
-  editCategory(categoryId).then(() => {
-    loadCategories();
-  });
-};
+    editCategory(categoryId).then((result) => {
+      // Only reload categories if the edit was successful (not cancelled)
+      if (result !== null) {
+        loadCategories();
+      }
+    });
+  };
 
   return (
     <div className="category-list-container">
