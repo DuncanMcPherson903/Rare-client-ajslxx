@@ -1,16 +1,35 @@
 import { getTotalSubsOfUser } from "../../managers/SubscriptionManager";
 import { getUserById } from "../../managers/UserManager";
+import { ProfilePictureUpload } from "./ProfilePictureUpload";
 import "./UserProfile.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export const UserProfile = () => {
   const [token] = useState(localStorage.getItem("auth_token"));
+
   const [user, setUser] = useState("");
   const [totalSubs, setTotalSubs] = useState(0);
+  const [loading, setLoading] = useState(true);
 
-  const loadUser = (userId) => {
-    getUserById(userId).then(setUser);
+
+  const loadUser = async (userId) => {
+    try {
+      setLoading(true);
+      const userData = await getUserById(userId);
+      setUser(userData);
+    } catch (error) {
+      console.error("Error loading user:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleProfilePictureUpdate = (newImageUrl) => {
+    setUser(prevUser => ({
+      ...prevUser,
+      profileImageUrl: newImageUrl
+    }));
   };
 
   const loadSubs = (userId) => {
@@ -18,13 +37,18 @@ export const UserProfile = () => {
   }
 
   useEffect(() => {
-    loadUser(token);
-    loadSubs(token);
-  });
+
+    if (token) {
+      loadUser(token);
+      loadSubs(token);
+    }
+  }, [token]);
 
   return (
     <div className="user-profile-container">
-      {user && (
+      {loading ? (
+        <div className="loading">Loading profile...</div>
+      ) : user ? (
         <>
           <div className="card">
             <div className="card-content">
@@ -60,7 +84,19 @@ export const UserProfile = () => {
               </div>
             </div>
           </div>
+          
+          <div className="card mt-4">
+            <div className="card-content">
+              <h3 className="title is-5">Profile Picture</h3>
+              <ProfilePictureUpload 
+                userId={token} 
+                onProfilePictureUpdate={handleProfilePictureUpdate}
+              />
+            </div>
+          </div>
         </>
+      ) : (
+        <div className="error">User not found</div>
       )}
     </div>
   );
