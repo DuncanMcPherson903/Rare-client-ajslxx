@@ -1,0 +1,114 @@
+.post-details-content {
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #00b5ec;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    color: #004fce;
+    margin: 0 auto;
+    border: 5px solid #cc0000
+}
+.post-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+    border: 5px solid #cc0000;
+    width: 500px;
+    margin: 0 auto;
+    height:500px;
+}
+.post-details-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #4931ff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    animation: head1 8s;
+}
+
+/* Add comment section styles for PostsDetails */
+.add-comment-section {
+    margin: 30px auto;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
+    max-width: 500px;
+}
+
+.add-comment-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.comment-create-form {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.comment-create-form h1 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.comment-create-form .form-group {
+    margin-bottom: 15px;
+}
+
+.comment-create-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.comment-create-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.comment-create-form textarea:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+.comment-create-form button[type="submit"] {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.comment-create-form button[type="submit"]:hover {
+    background: #218838;
+}
+
+.comment-create-form button[type="submit"]:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}

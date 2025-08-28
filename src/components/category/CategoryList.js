@@ -7,7 +7,7 @@ import { getPosts } from "../../managers/PostManager";
 export const CategoryList = () => {
   const [categories, setCategories] = useState([]);
 
-  // Load all categorys
+  // Load all categories
   const loadCategories = () => {
     getCategories().then(setCategories);
   };
