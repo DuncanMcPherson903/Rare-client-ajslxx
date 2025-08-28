@@ -66,3 +66,8 @@ export const deletePostHeaderImage = (postId) => {
     method: "DELETE"
   }).then(res => res.json());
 };
+
+// Add this function for getting posts by tag
+export const getPostsByTag = (tagId) => {
+  return fetch(`${API_URL}/posts/tag/${tagId}`).then(res => res.json());
+};
