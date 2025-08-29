@@ -1,0 +1,337 @@
+/* ==================== BADASS POST CREATE STYLES ==================== */
+
+.post-form-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+    border: 2px solid #DC143C;
+}
+
+h2 {
+    color: #FF0000;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    letter-spacing: 2px;
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    border: 2px solid #DC143C;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.6);
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #DC143C;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    color: #FFFFFF;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #FF0000;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.3), 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-checkbox {
+    width: auto;
+    margin: 0;
+}
+
+.submit-button {
+    background: linear-gradient(135deg, #FF0000 0%, #DC143C 100%);
+    color: #FFFFFF;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    margin-top: 20px;
+}
+
+.submit-button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #DC143C 0%, #FF0000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+}
+
+.submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ==================== IMAGE UPLOAD STYLES ==================== */
+
+.image-upload-section {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid #DC143C;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.upload-controls {
+    margin-bottom: 20px;
+}
+
+.file-label {
+    display: inline-block;
+    background: linear-gradient(135deg, #FF0000 0%, #DC143C 100%);
+    color: #FFFFFF;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    border: 2px solid #FF0000;
+}
+
+.file-label:hover {
+    background: linear-gradient(135deg, #DC143C 0%, #FF0000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+}
+
+.file-input {
+    display: none;
+}
+
+.file-info {
+    margin-top: 15px;
+    padding: 12px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    border-radius: 8px;
+    border-left: 4px solid #FF0000;
+    border: 2px solid #DC143C;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+.file-info p {
+    margin: 5px 0;
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.6);
+    font-family: 'Courier New', monospace;
+}
+
+.preview-container {
+    margin: 20px 0;
+    padding: 15px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    border-radius: 10px;
+    border: 2px solid #DC143C;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.preview-container h5 {
+    margin-bottom: 12px;
+    color: #FF0000;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+.preview-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    border: 2px solid #FF0000;
+}
+
+.upload-guidelines {
+    margin-top: 20px;
+    padding: 15px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-radius: 10px;
+    border-left: 4px solid #FF0000;
+    border: 2px solid #DC143C;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.upload-guidelines h5 {
+    margin-bottom: 10px;
+    color: #FF0000;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+.upload-guidelines ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #FFFFFF;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.6);
+}
+
+.upload-guidelines li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+}
+
+/* ==================== MESSAGES ==================== */
+
+.message {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.error-message {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    color: #FF0000;
+    border: 2px solid #FF0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+}
+
+.success-message {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: #00FF00;
+    border: 2px solid #00FF00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.8);
+}
+
+.close-message {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: inherit;
+    padding: 0;
+    margin-left: 15px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.close-message:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 768px) {
+    .post-form-container {
+        margin: 20px;
+        padding: 20px;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .post-form {
+        padding: 15px;
+    }
+    
+    .form-input,
+    .form-textarea {
+        padding: 10px 12px;
+    }
+    
+    .submit-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    
+    .image-upload-section {
+        padding: 15px;
+    }
+    
+    .preview-image {
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-form-container {
+        padding: 15px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .upload-guidelines ul {
+        padding-left: 15px;
+    }
+    
+    .file-label {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+    }
+}
